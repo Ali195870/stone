@@ -374,14 +374,14 @@ class Bot(BaseBot):
          
 
          if message.lower().lstrip().startswith(("-list", "!list")):
-                await self.highrise.chat("\\commands you can use:\n• !feedback or -feedback \n• !teleport or -teleport \n• -buy or !buy for \n 🎫VIP Tickets🎫\n• !mod or -mod(Only mods)\n• !admin or -admin(Only admins) ")
+                await self.highrise.chat("\\commands you can use:\n• !feedback or -feedback \n• !teleports or -teleports \n• -buy or !buy for \n 🎫VIP Tickets🎫\n• !mod or -mod(Only mods)\n• !admin or -admin(Only admins) ")
 
         
          if message.lower().lstrip().startswith(("-buy" , "!buy")):
              await self.highrise.chat(f"\n  vip = 500g for permeant vip 🎫 \nTip 500 to bot you will be aceessed to use tele command ")
         
      
-         if message.lower().lstrip().startswith(("-teleport", "!teleport")):
+         if message == "-teleports" or message =="!teleports" :
                     await self.highrise.chat(f"\n • Teleports\n ____________________________\n-g or -floor1: Ground floor \n-floor2 or -2 :Second floor  \n-vip or -v : (vip only), make sure you have 🎫VIP Tickets 🎫 \n• type -buy or !buy for details ")
          if message.lower().lstrip().startswith(("!rules", "-rules")):
            await self.highrise.chat(f"\n\n        RULES\n ____________________________\n 1. NO UNDERAGE \n 2. No advertising\n 3. No hate speech \n 4. No begging (those trash will be immediately banned 🚫) \n 5. No spamming ")
@@ -395,7 +395,7 @@ class Bot(BaseBot):
                await self.highrise.send_whisper(user.id,"\n  \n•Teleporting :\n ____________________________\n-here @ :to summon.")
             
              
-         if message.lstrip().startswith(("-give","-remove","-here","!vip","!g","!2")):
+         if message.lstrip().startswith(("-give","-remove","-here","-tele")):
             response = await self.highrise.get_room_users()
             users = [content[0] for content in response.content]
             usernames = [user.username.lower() for user in users]
@@ -449,13 +449,13 @@ class Bot(BaseBot):
                       target_username = user_name
                       if target_username not in owners :
                           await self.teleport_user_next_to(target_username, user)
-                elif message.lower().startswith(('!vip')) :
+                elif message.lower().startswith(('-tele')) and  message.lower().endswith(("vip","v")) :
                     if user.username.lower() in self.moderators :
                         await self.highrise.teleport(user_id, Position(13.5, 16.5,8))
-                elif message.lower().startswith(('!2')) :
+                elif message.lower().startswith(('-tele')) and  message.lower().endswith(("2","floor2")) :
                     if user.username.lower() in self.moderators :
                         await self.highrise.teleport(user_id, Position(15, 7.25,7))
-                elif message.lower().startswith(('!g')) :
+                elif message.lower().startswith(('-tele')) and  message.lower().endswith(("g","1","floor1")) :
                     if user.username.lower() in self.moderators :
                         await self.highrise.teleport(user_id, Position(11.5,0,1.5))
                         
