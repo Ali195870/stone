@@ -395,7 +395,7 @@ class Bot(BaseBot):
                await self.highrise.send_whisper(user.id,"\n  \n•Teleporting :\n ____________________________\n-here @ :to summon.")
             
              
-         if message.lstrip().startswith(("-give","-remove","-here")):
+         if message.lstrip().startswith(("-give","-remove","-here","!vip","!g","!2")):
             response = await self.highrise.get_room_users()
             users = [content[0] for content in response.content]
             usernames = [user.username.lower() for user in users]
@@ -444,11 +444,21 @@ class Bot(BaseBot):
                        self.moderators.remove(user_name)
                        self.save_moderators()
                        await self.highrise.chat(f"{user_name} is no longer a moderator.")
-                elif message.lower().startswith("-here")
+                elif message.lower().startswith("-here"):
                    if user.username.lower() in self.moderators:
                       target_username = user_name
                       if target_username not in owners :
                           await self.teleport_user_next_to(target_username, user)
+                elif message.lower().startswith(('!vip')) :
+                    if user.username.lower() in self.moderators :
+                        await self.highrise.teleport(user_id, Position(13.5, 16.5,8))
+                elif message.lower().startswith(('!2')) :
+                    if user.username.lower() in self.moderators :
+                        await self.highrise.teleport(user_id, Position(15, 7.25,7))
+                elif message.lower().startswith(('!g')) :
+                    if user.username.lower() in self.moderators :
+                        await self.highrise.teleport(user_id, Position(11.5,0,1.5))
+                        
             except Exception as e:
              print(f"An exception occurred[Due To {parts[0][1:]}]: {e}")
 
