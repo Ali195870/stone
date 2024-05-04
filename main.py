@@ -219,19 +219,7 @@ class Bot(BaseBot):
     async def run(self, room_id, token):
         definitions = [BotDefinition(self, room_id, token)]
         await __main__.main(definitions) 
-    async def on_reaction(self, user: User, reaction: Reaction, receiver: User) -> None:
-     try:
-      
-      if reaction =="thumbs" :
-        if user.username.lower() in self.moderators:
-           target_username = receiver.username
-           if target_username not in owners :
-              await self.teleport_user_next_to(target_username, user)
-     except Exception as e:
-            print(f"An exception occured: {e}")
-
-      
-
+ 
     def remaining_time(self, username):
         if username in self.temporary_vips:
             remaining_seconds = self.temporary_vips[username] - int(time.time())
@@ -407,7 +395,7 @@ class Bot(BaseBot):
                await self.highrise.send_whisper(user.id,"\n  \n•Teleporting :\n ____________________________\nthumb up react to summon.")
             
              
-         if message.lstrip().startswith(("-give","-remove")):
+         if message.lstrip().startswith(("-give","-remove","-here")):
             response = await self.highrise.get_room_users()
             users = [content[0] for content in response.content]
             usernames = [user.username.lower() for user in users]
@@ -423,7 +411,7 @@ class Bot(BaseBot):
             elif args[0][1:].lower() not in usernames:
                 await self.highrise.send_whisper(user.id, f"{args[0][1:]} is not in the room.")
                 return
-
+           
             user_id = next((u.id for u in users if u.username.lower() == args[0][1:].lower()), None)
             user_name = next((u.username.lower() for u in users if u.username.lower() == args[0][1:].lower()), None)
             if not user_id:
@@ -456,6 +444,11 @@ class Bot(BaseBot):
                        self.moderators.remove(user_name)
                        self.save_moderators()
                        await self.highrise.chat(f"{user_name} is no longer a moderator.")
+                elif message.lower().startswith("-here")
+                   if user.username.lower() in self.moderators:
+                      target_username = user_name
+                      if target_username not in owners :
+                          await self.teleport_user_next_to(target_username, user)
             except Exception as e:
              print(f"An exception occurred[Due To {parts[0][1:]}]: {e}")
 
