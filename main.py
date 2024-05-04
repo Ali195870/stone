@@ -392,7 +392,7 @@ class Bot(BaseBot):
          if user.username.lower() in self.moderators:
             if message.lower().lstrip().startswith(("-mod","!mod")):
                await self.highrise.send_whisper(user.id,"\n  \n•Moderating :\n ____________________________\n !kick @ \n !ban @ \n !mute @ \n !unmute @ ")
-               await self.highrise.send_whisper(user.id,"\n  \n•Teleporting :\n ____________________________\n-here @ :to summon.")
+               await self.highrise.send_whisper(user.id,"\n  \n•Teleporting :\n ____________________________\n-here @ :to summon\n _tele @ tele_key. : tele to a certain teleport\nExample -tele @username vip")
             
              
          if message.lstrip().startswith(("-give","-remove","-here","-tele")):
