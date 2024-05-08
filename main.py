@@ -18,7 +18,7 @@ from highrise.__main__ import *
 import asyncio, random
 from emotes import Emotes
 from emotes import Dance_Floor
-owners = ['oharax','unhingedbaphomet2', 'alionardo_']
+owners = ['oharax','unhingedbaphomet2', 'misanthropictyrant','alionardo_']
 moderators = ['alionardo_','oharax','cxlinxe145','unforgettablexg','unhingedbaphomet2','cxlinxe145','badjujuxix','unforgrttablexg','misanthropictyrant']
 class BotDefinition:
     
@@ -349,7 +349,6 @@ class Bot(BaseBot):
                 roomUsers = (await self.highrise.get_room_users()).content
                 for roomUser, _ in roomUsers:
                   await self.highrise.tip_user(roomUser.id, "gold_bar_5")
-                  await self.highrise.react("heart", roomUser.id)
               else: 
                 await  self.highrise.send_whisper(user.id, f"Only Admins can use tip!")
 
@@ -358,7 +357,6 @@ class Bot(BaseBot):
                 roomUsers = (await self.highrise.get_room_users()).content
                 for roomUser, _ in roomUsers:
                   await self.highrise.tip_user(roomUser.id, "gold_bar_1")
-                  await self.highrise.react("heart", roomUser.id)
               else: 
                 await  self.highrise.send_whisper(user.id, f"Only Admins can use tip!")
 
