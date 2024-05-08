@@ -345,7 +345,7 @@ class Bot(BaseBot):
         
         
          if message == "!tip5":
-              if user.username.lower() in owners:
+              if user.username.lower() in self.moderators:
                 roomUsers = (await self.highrise.get_room_users()).content
                 for roomUser, _ in roomUsers:
                   await self.highrise.tip_user(roomUser.id, "gold_bar_5")
@@ -353,12 +353,12 @@ class Bot(BaseBot):
                 await  self.highrise.send_whisper(user.id, f"Only Admins can use tip!")
 
          if message == "!tip1":
-              if user.username.lower() in owners:
+              if user.username.lower() in self.moderators:
                 roomUsers = (await self.highrise.get_room_users()).content
                 for roomUser, _ in roomUsers:
                   await self.highrise.tip_user(roomUser.id, "gold_bar_1")
               else: 
-                await  self.highrise.send_whisper(user.id, f"Only Admins can use tip!")
+                await  self.highrise.send_whisper(user.id, f"Only Admins are eligible to tip.")
 
          if message.lower().lstrip().startswith(("-emotes", "!emotes")):
                 await self.highrise.send_whisper(user.id, "\n• Emote can be used by NUMBERS")
@@ -369,7 +369,7 @@ class Bot(BaseBot):
            if user.username.lower() in moderators :
              await self.highrise.send_whisper(user.id,"\n____________________________\n• Give mod & vip :\n-give @ mod \n-give @ mod 24h\n-give @ vip 🎫 \n• Remove mod\n-remove @ mod\n• Advertising\n-announce + text\n-clear\n ____________________________")
            else:
-              await self.highrise.send_whisper(user.id,"Only Admins are eligie.")  
+              await self.highrise.send_whisper(user.id,"Only Admins are eligible to tip.")  
              
          
 
