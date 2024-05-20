@@ -18,8 +18,8 @@ from highrise.__main__ import *
 import asyncio, random
 from emotes import Emotes
 from emotes import Dance_Floor
-owners = ['oharax','unhingedbaphomet2', 'misanthropictyrant','alionardo_']
-moderators = ['alionardo_','oharax','cxlinxe145','unforgettablexg','unhingedbaphomet2','cxlinxe145','badjujuxix','unforgrttablexg','misanthropictyrant']
+owners = ['ohara','alionardo_']
+moderators = ['alionardo_','oharax','cxlinxe145','unforgettablexg','justyourboyseal','mikzeyyy']
 class BotDefinition:
     
       
@@ -344,22 +344,28 @@ class Bot(BaseBot):
 
         
         
-         if message == "!tip5":
-              if user.username.lower() in self.moderators:
+         if message == "-tip 5":
+              if user.username.lower() in moderators:
                 roomUsers = (await self.highrise.get_room_users()).content
                 for roomUser, _ in roomUsers:
                   await self.highrise.tip_user(roomUser.id, "gold_bar_5")
               else: 
                 await  self.highrise.send_whisper(user.id, f"Only Admins can use tip!")
 
-         if message == "!tip1":
-              if user.username.lower() in self.moderators:
+         if message == "-tip 1":
+              if user.username.lower() in moderators:
                 roomUsers = (await self.highrise.get_room_users()).content
                 for roomUser, _ in roomUsers:
                   await self.highrise.tip_user(roomUser.id, "gold_bar_1")
               else: 
                 await  self.highrise.send_whisper(user.id, f"Only Admins are eligible to tip.")
-
+         if message == "-tip 10":
+              if user.username.lower() in moderators:
+                roomUsers = (await self.highrise.get_room_users()).content
+                for roomUser, _ in roomUsers:
+                  await self.highrise.tip_user(roomUser.id, "gold_bar_10")
+              else: 
+                await  self.highrise.send_whisper(user.id, f"Only Admins are eligible to tip.")
          if message.lower().lstrip().startswith(("-emotes", "!emotes")):
                 await self.highrise.send_whisper(user.id, "\n• Emote can be used by NUMBERS")
                 await self.highrise.send_whisper(user.id, "\n• For loops say -loop or !loop then the emote number.")         
@@ -368,8 +374,9 @@ class Bot(BaseBot):
          if message.lower().lstrip().startswith(("!admin","-admin")):
            if user.username.lower() in moderators :
              await self.highrise.send_whisper(user.id,"\n____________________________\n• Give mod & vip :\n-give @ mod \n-give @ mod 24h\n-give @ vip 🎫 \n• Remove mod\n-remove @ mod\n• Advertising\n-announce + text\n-clear\n ____________________________")
+             await self.highrise.send_whisper(user.id,"\n____________________________\n• Tipping  :\n-tip 1\n-tip 5 \n-tip 10 \n-wallet to veiw the bot wallet.\n____________________________\n
            else:
-              await self.highrise.send_whisper(user.id,"Only Admins are eligible to tip.")  
+              await self.highrise.send_whisper(user.id,"Only Admins are eligible to veiw.")  
              
          
 
@@ -599,7 +606,7 @@ class Bot(BaseBot):
              active_palette=-1)
       ])
 
-         if  message.lower().startswith("wallet"):
+         if  message.lower().startswith("-wallet"):
             if user.username.lower() in self.moderators :
 
                   wallet = (await self.highrise.get_wallet()).content
@@ -671,15 +678,15 @@ class Bot(BaseBot):
 
                             pass
        
-        if message.startswith("/say"):
+        if message.startswith("-say"):
             if user.username.lower() in self.moderators:
-                text = message.replace("/say", "").strip()
+                text = message.replace("-say", "").strip()
                 await self.highrise.chat(text)
 
    
          
 
-        elif message.startswith("/come"):
+        elif message.startswith("-come"):
             if user.username.lower() in self.moderators:
                 response = await self.highrise.get_room_users()
                 your_pos = None
@@ -694,22 +701,22 @@ class Bot(BaseBot):
                 await self.highrise.chat(f"@{user.username} I'm coming ..")
                 await self.highrise.walk_to(your_pos)
 
-        elif message.lower().startswith("/follow"):
+        elif message.lower().startswith("-follow"):
          
             target_username = message.split("@")[1].strip()
 
             if target_username.lower() == self.following_username:
                 await self.highrise.send_whisper(user.id,"I am already following.")
-            elif message.startswith("/say"):
+            elif message.startswith("-say"):
               if user.username.lower() in self.moderators:
-                  text = message.replace("/say", "").strip()
+                  text = message.replace("-say", "").strip()
                   await self.highrise.chat(text)
             else:
                 self.following_username = target_username
                 await self.highrise.chat(f"hey {target_username}.")
             
                 await self.follow_user(target_username)
-        elif message.lower() == "stop following":
+        elif message.lower() == "-stop following":
             self.following_username = None
           
             await self.highrise.walk_to(Position(16,0,1.5,"FrontLeft"))
