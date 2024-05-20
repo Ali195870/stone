@@ -374,7 +374,7 @@ class Bot(BaseBot):
          if message.lower().lstrip().startswith(("!admin","-admin")):
            if user.username.lower() in moderators :
              await self.highrise.send_whisper(user.id,"\n____________________________\n• Give mod & vip :\n-give @ mod \n-give @ mod 24h\n-give @ vip 🎫 \n• Remove mod\n-remove @ mod\n• Advertising\n-announce + text\n-clear\n ____________________________")
-             await self.highrise.send_whisper(user.id,"\n____________________________\n• Tipping  :\n-tip 1\n-tip 5 \n-tip 10 \n-wallet to veiw the bot wallet.\n____________________________\n
+             await self.highrise.send_whisper(user.id,"\n____________________________\n• Tipping  :\n-tip 1\n-tip 5 \n-tip 10 \n-wallet to veiw the bot wallet.\n____________________________\n")
            else:
               await self.highrise.send_whisper(user.id,"Only Admins are eligible to veiw.")  
              
