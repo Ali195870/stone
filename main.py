@@ -18,7 +18,7 @@ from highrise.__main__ import *
 import asyncio, random
 from emotes import Emotes
 from emotes import Dance_Floor
-owners = ['ohara','alionardo_']
+owners = ['oharax','alionardo_']
 moderators = ['alionardo_','oharax','cxlinxe145','unforgettablexg','justyourboyseal','mikzeyyy']
 class BotDefinition:
     
@@ -58,8 +58,8 @@ class Bot(BaseBot):
         #dance floor position
         min_x = 3.5
         max_x = 7.5
-        min_y = 7.5
-        max_y = 8
+        min_y = 50
+        max_y = 50
         min_z = 0.5
         max_z = 3.5
 
@@ -432,6 +432,12 @@ class Bot(BaseBot):
                         self.membership.append(user_name)
                         self.save_membership()
                         await self.highrise.chat(f"Congratulations! {user_name}you been given a \n🎫 Permanent vip ticket 🎫 \n ____________________________\nUse the key -vip or -v to teleport")
+                elif message.lower().startswith("-remove") and message.lower().endswith("vip"):   
+                  if user.username.lower() in moderators:
+                     if user_name.lower() not in self.membership:
+                        self.membership.remove(user_name)
+                        self.save_membership()
+                        await self.highrise.chat(f"{user_name} is no loger a vip.")
 
                 elif message.lower().startswith("-give") and message.lower().endswith("mod"):   
                   if user.username.lower() in moderators :
