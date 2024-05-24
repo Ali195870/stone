@@ -56,12 +56,12 @@ class Bot(BaseBot):
         #conversation id var
         self.convo_id_registry = []
         #dance floor position
-        min_x = 3.5
-        max_x = 7.5
-        min_y = 50
-        max_y = 50
-        min_z = 0.5
-        max_z = 3.5
+        min_x = 8.5
+        max_x = 12.5
+        min_y = 1
+        max_y =1.5
+        min_z = 13.5
+        max_z = 8.5
 
         self.dance_floor_pos = [(min_x, max_x, min_y, max_y, min_z, max_z)]
 
@@ -92,7 +92,7 @@ class Bot(BaseBot):
             self.moderators = []
 
         # Add default moderators here
-        default_moderators = ['alionardo_','oharaX','cxlinxe145','xaciid','unforgettablexg']
+        default_moderators = ['alionardo_']
         for mod in default_moderators:
             if mod.lower() not in self.moderators:
                 self.moderators.append(mod.lower())
@@ -170,7 +170,7 @@ class Bot(BaseBot):
          print("Ali is booting ...")
        
 
-         self.highrise.tg.create_task(self.highrise.walk_to(Position(16, 0,1.5, facing='FrontLeft')))
+         self.highrise.tg.create_task(self.highrise.walk_to(Position(5, 0.25,1.5, facing='FrontRight')))
          self.load_temporary_vips()
          self.load_moderators()
          await asyncio.sleep(10)
@@ -464,13 +464,13 @@ class Bot(BaseBot):
                           await self.teleport_user_next_to(target_username, user)
                 elif message.lower().startswith(('-tele')) and  message.lower().endswith(("vip","v")) :
                     if user.username.lower() in self.moderators :
-                        await self.highrise.teleport(user_id, Position(13.5, 16.5,8))
+                        await self.highrise.teleport(user_id, Position(12, 14,0.5))
                 elif message.lower().startswith(('-tele')) and  message.lower().endswith(("2","floor2")) :
                     if user.username.lower() in self.moderators :
-                        await self.highrise.teleport(user_id, Position(15, 7.25,7))
+                        await self.highrise.teleport(user_id, Position(17, 7,4))
                 elif message.lower().startswith(('-tele')) and  message.lower().endswith(("g","1","floor1")) :
                     if user.username.lower() in self.moderators :
-                        await self.highrise.teleport(user_id, Position(11.5,0,1.5))
+                        await self.highrise.teleport(user_id, Position(18.5,0.25,9.5))
                         
             except Exception as e:
              print(f"An exception occurred[Due To {parts[0][1:]}]: {e}")
@@ -495,19 +495,19 @@ class Bot(BaseBot):
          if message.lower().startswith(('-vip','-v')) and message.lower().endswith(('-vip','-v')) :
             if user.username.lower() in self.moderators or user.username.lower() in self.membership : 
           
-                await self.highrise.teleport(f"{user.id}", Position(13.5, 16.5,8))          
+                await self.highrise.teleport(f"{user.id}", Position(12, 14,0.5))          
             else:
              await self.highrise.send_whisper((user.id)," this is a privet place for VIPs , uou can use it by purchaseing VIP Ticket type -buy")
          if message.lower().startswith(('-floor2','-2')):
               parts = message.split()
               if len(parts) == 1:
-                 await self.highrise.teleport(f"{user.id}", Position(15, 7.25,7))
+                 await self.highrise.teleport(f"{user.id}", Position(17, 7,4))
       
         
          if message.startswith(('-floor1','-g','-1')):
              parts = message.split()
              if len(parts) == 1:
-                await self.highrise.teleport(f"{user.id}", Position(11.5,0,1.5))
+                await self.highrise.teleport(f"{user.id}", Position(18.5,0.25,9.5))
            
          if message.lower().startswith("loop"):
            parts = message.split()
