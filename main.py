@@ -18,8 +18,8 @@ from highrise.__main__ import *
 import asyncio, random
 from emotes import Emotes
 from emotes import Dance_Floor
-owners = ['oharax','alionardo_']
-moderators = ['alionardo_','oharax','cxlinxe145','unforgettablexg','justyourboyseal','mikzeyyy']
+owners = ['alionardo_','stonedzilla9']
+moderators = ['alionardo_','stonedzilla9']
 class BotDefinition:
     
       
@@ -186,7 +186,7 @@ class Bot(BaseBot):
 
      try:
 
-        await self.highrise.send_whisper(user.id,f"\n ____________________________\nHello {user.username}\n  Welcome to<#0043b2> FIND A DATE 🌹💋<#f6f6f6>\n ____________________________\n•!buy or -buy \nFor vip \n•!list or -list\nTo discover our room.\n ____________________________\n")
+        await self.highrise.send_whisper(user.id,f"\n ____________________________\nHello {user.username}\n  Welcome to CLUB SIX_MINE <#f6f6f6>\n ____________________________\n•!buy or -buy \nFor vip \n•!list or -list\nTo discover our room.\n ____________________________\n")
         await self.highrise.send_emote('emote-salute')
      
      except Exception as e:
@@ -385,7 +385,7 @@ class Bot(BaseBot):
 
         
          if message.lower().lstrip().startswith(("-buy" , "!buy")):
-             await self.highrise.chat(f"\n  vip = 500g for permeant vip 🎫 \nTip 500 to bot you will be aceessed to use tele command ")
+             await self.highrise.chat(f"\n -Perm vip = 500g for permeant vip 🎫 \n-Temp vip = 100g for 24h vip 🎫\n Tip bot to buy ,you will be aceessed to use tele command ")
         
      
          if message == "-teleports" or message =="!teleports" :
@@ -394,12 +394,12 @@ class Bot(BaseBot):
            await self.highrise.chat(f"\n\n        RULES\n ____________________________\n 1. NO UNDERAGE \n 2. No advertising\n 3. No hate speech \n 4. No begging (those trash will be immediately banned 🚫) \n 5. No spamming ")
          if message.lower().lstrip().startswith(("-feedback", "!feedback")):
                     await self.highrise.send_whisper(user.id, "• [ Submit Feedback ]\\Thank you for joining our room! \n We value your feedback,")
-                    await self.highrise.send_whisper(user.id,"Please share your feedback/suggestions with @YourWorstNightMarexx to improve our environment. Your contributions are valuable and will help us improve.")  
+                    await self.highrise.send_whisper(user.id,"Please share your feedback/suggestions with @stonedzillia9 to improve our environment. Your contributions are valuable and will help us improve.")  
 
          if user.username.lower() in self.moderators:
             if message.lower().lstrip().startswith(("-mod","!mod")):
                await self.highrise.send_whisper(user.id,"\n  \n•Moderating :\n ____________________________\n !kick @ \n !ban @ \n !mute @ \n !unmute @ ")
-               await self.highrise.send_whisper(user.id,"\n  \n•Teleporting :\n ____________________________\n-here @ :to summon\n _tele @ tele_key. : tele to a certain teleport\nExample -tele @username vip")
+               await self.highrise.send_whisper(user.id,"\n  \n•Teleporting :\n ____________________________\n-here @ :to summon\n -tele @ tele_key. : telepport to a certain teleport\nExample -tele @username vip")
             
              
          if message.lstrip().startswith(("-give","-remove","-here","-tele")):
