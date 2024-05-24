@@ -385,7 +385,7 @@ class Bot(BaseBot):
 
         
          if message.lower().lstrip().startswith(("-buy" , "!buy")):
-             await self.highrise.chat(f"\n -Perm vip = 500g for permeant vip 🎫 \n-Temp vip = 100g for 24h vip 🎫\n Tip bot to buy ,you will be aceessed to use tele command ")
+             await self.highrise.chat(f"\n____________________________\n• Perm vip = 500g for permeant vip 🎫 \n• Temp vip = 100g for 24h vip 🎫\n Tip bot to buy ,you will be aceessed to use tele commands.\n____________________________\n ")
         
      
          if message == "-teleports" or message =="!teleports" :
@@ -429,9 +429,9 @@ class Bot(BaseBot):
                 if message.lower().startswith("-give") and message.lower().endswith("vip"):   
                   if user.username.lower() in moderators:
                      if user_name.lower() not in self.membership:
-                        self.membership.append(user_name)
-                        self.save_membership()
-                        await self.highrise.chat(f"Congratulations! {user_name}you been given a \n🎫 Permanent vip ticket 🎫 \n ____________________________\nUse the key -vip or -v to teleport")
+                        self.temporary_vips[user_name] = int(time.time()) + 24 * 60 * 60  # VIP for 24 hours
+                        self.save_temporary_vips()
+                        await self.highrise.chat(f"Congratulations! {user_name}you been given a \n🎫 free vip ticket 🎫 \n ____________________________\nUse the key -vip or -v to teleport")
                 elif message.lower().startswith("-remove") and message.lower().endswith("vip"):   
                   if user.username.lower() in moderators:
                      if user_name.lower() not in self.membership:
@@ -449,7 +449,7 @@ class Bot(BaseBot):
                   if user.username.lower() in owners :
                      await self.highrise.chat(f"{user_name} is now a Temporary MOD, given by {user.username}")
                      if user_name not in self.temporary_vips:
-                         self.temporary_vips[user_name] = int(time.time()) + 24 * 60 * 60  # VIP for 24 hours
+                         self.temporary_vips[user_name] = int(time.time()) + 24 * 60 * 60  # MOD for 24 hours
                          self.save_temporary_vips()
                 elif message.lower().startswith("-remove") and message.lower().endswith("mod"):
                   if user.username.lower() in owners :
@@ -733,7 +733,7 @@ class Bot(BaseBot):
     async def on_tip(self, sender: User, receiver: User, tip: CurrencyItem) -> None:
         try:
             print(f"{sender.username} tipped {receiver.username} an amount of {tip.amount}")
-            await self.highrise.chat(f"𝓣𝓱𝓮 𝓐𝓶𝓪𝔃𝓲𝓷𝓰 {sender.username} 𝓽𝓲𝓹𝓹𝓮𝓭 {receiver.username} 𝓪𝓷 𝓪𝓶𝓸𝓾𝓷𝓽 𝓸𝓯  {tip.amount}𝐆𝐎𝐋𝐃")
+            
 
             
        
@@ -741,10 +741,21 @@ class Bot(BaseBot):
               if receiver.id == Counter.bot_id:    
                  sender_username = sender.username.lower()
                  if sender_username not in self.membership:
-                   self.membership.append(sender_username)
-                   self.save_membership()
+                   self.temporary_vips[sender_username] = int(time.time()) + 24 * 60 * 60 *360*10
+                   self.save_temporary_vips()
                    await self.highrise.chat(f"Thank you {sender_username} for purchasing Permeant vip ticket , you teleport to the vip now \n-vip or -v : to go vip place🎫 . \n-g:Ground floor") 
-
+               else: 
+                   await self.highrise.chat(f"Our{sender.username} tipped our {receiver.username} an amount of {tip.amount} gold.")
+            elif tip.amount == 100:
+              if receiver.id == Counter.bot_id:    
+                 sender_username = sender.username.lower()
+                 if sender_username not in self.membership:
+                   self.temporary_vips[sender_username] = int(time.time()) + 24 * 60 * 60 *
+                   self.save_temporary_vips()
+                   await self.highrise.chat(f"Thank you {sender_username} for purchasing 24h vip ticket , you teleport to the vip now \n-vip or -v : to go vip place🎫 . \n-g:Ground floor") 
+               else: 
+                   await self.highrise.chat(f"Our{sender.username} tipped our {receiver.username} an amount of {tip.amount} gold.")
+                 
                  
         except Exception as e:
              print(f"An exception occured: {e}")
