@@ -56,12 +56,12 @@ class Bot(BaseBot):
         #conversation id var
         self.convo_id_registry = []
         #dance floor position
-        min_x = 8.5
-        max_x = 12.5
+        min_x = 4.5
+        max_x = 16.5
         min_y = 0
         max_y =1.5
-        min_z = 8.5
-        max_z = 13.5
+        min_z = 5.5
+        max_z = 16.5
 
         self.dance_floor_pos = [(min_x, max_x, min_y, max_y, min_z, max_z)]
 
@@ -725,7 +725,7 @@ class Bot(BaseBot):
         elif message.lower() == "-stop following":
             self.following_username = None
           
-            await self.highrise.walk_to(Position(16,0,1.5,"FrontLeft"))
+            await self.highrise.walk_to(Position(5, 0.25,1.5,"FrontLeft"))
 
   
   
