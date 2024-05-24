@@ -345,27 +345,27 @@ class Bot(BaseBot):
         
         
          if message == "-tip 5":
-              if user.username.lower() in moderators:
+              if user.username.lower() in self.moderators:
                 roomUsers = (await self.highrise.get_room_users()).content
                 for roomUser, _ in roomUsers:
                   await self.highrise.tip_user(roomUser.id, "gold_bar_5")
               else: 
-                await  self.highrise.send_whisper(user.id, f"Only Admins can use tip!")
+                await  self.highrise.send_whisper(user.id, f"Only Admins and mods can use tip!")
 
          if message == "-tip 1":
-              if user.username.lower() in moderators:
+              if user.username.lower() in self.moderators:
                 roomUsers = (await self.highrise.get_room_users()).content
                 for roomUser, _ in roomUsers:
                   await self.highrise.tip_user(roomUser.id, "gold_bar_1")
               else: 
-                await  self.highrise.send_whisper(user.id, f"Only Admins are eligible to tip.")
+                await  self.highrise.send_whisper(user.id, f"Only Admins and mods are eligible to tip.")
          if message == "-tip 10":
-              if user.username.lower() in moderators:
+              if user.username.lower() in self.moderators:
                 roomUsers = (await self.highrise.get_room_users()).content
                 for roomUser, _ in roomUsers:
                   await self.highrise.tip_user(roomUser.id, "gold_bar_10")
               else: 
-                await  self.highrise.send_whisper(user.id, f"Only Admins are eligible to tip.")
+                await  self.highrise.send_whisper(user.id, f"Only Admins and mods are eligible to tip.")
          if message.lower().lstrip().startswith(("-emotes", "!emotes")):
                 await self.highrise.send_whisper(user.id, "\n• Emote can be used by NUMBERS")
                 await self.highrise.send_whisper(user.id, "\n• For loops say -loop or !loop then the emote number.")         
