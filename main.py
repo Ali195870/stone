@@ -59,7 +59,7 @@ class Bot(BaseBot):
         min_x = 4.5
         max_x = 16.5
         min_y = 0
-        max_y =1.5
+        max_y =0.25
         min_z = 5.5
         max_z = 16.5
 
