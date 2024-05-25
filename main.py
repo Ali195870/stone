@@ -430,7 +430,7 @@ class Bot(BaseBot):
                   if user.username.lower() in moderators:
                      if user_name.lower() not in self.membership:
                         self.membership[user_name] = int(time.time()) + 24 * 60 * 60  # VIP for 24 hours
-                        self.membership()
+                        self.save_membership()
                         await self.highrise.chat(f"Congratulations! {user_name}you been given a \n🎫 free vip ticket 🎫 \n ____________________________\nUse the key -vip or -v to teleport")
                 elif message.lower().startswith("-remove") and message.lower().endswith("vip"):   
                   if user.username.lower() in moderators:
