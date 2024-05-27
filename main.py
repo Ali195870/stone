@@ -507,7 +507,7 @@ class Bot(BaseBot):
                  await self.highrise.teleport(f"{user.id}", Position(17, 7,4))
       
          if message.lower().startswith(('-stage','-s')):
-             id user.username in self.moderators:
+             if user.username in self.moderators:
                  await self.highrise.teleport(f"{user.id}", Position(10, 1,9.5))
          if message.startswith(('-floor1','-g','-1')):
              parts = message.split()
