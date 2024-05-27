@@ -389,7 +389,7 @@ class Bot(BaseBot):
         
      
          if message == "-teleports" or message =="!teleports" :
-                    await self.highrise.chat(f"\n • Teleports\n ____________________________\n-g or -floor1: Ground floor \n-floor2 or -2 :Second floor  \n-vip or -v : (vip only), make sure you have 🎫VIP Tickets 🎫 \n• type -buy or !buy for details ")
+                    await self.highrise.chat(f"\n • Teleports\n ____________________________\n-g or -floor1: Ground floor \n-floor2 or -2 :Second floor \n-stage or -s: (mods only) \n-vip or -v : (vip only), make sure you have 🎫VIP Tickets 🎫 \n• type -buy or !buy for details ")
          if message.lower().lstrip().startswith(("!rules", "-rules")):
            await self.highrise.chat(f"\n\n        RULES\n ____________________________\n 1. NO UNDERAGE \n 2. No advertising\n 3. No hate speech \n 4. No begging (those trash will be immediately banned 🚫) \n 5. No spamming ")
          if message.lower().lstrip().startswith(("-feedback", "!feedback")):
@@ -471,6 +471,9 @@ class Bot(BaseBot):
                 elif message.lower().startswith(('-tele')) and  message.lower().endswith(("g","1","floor1")) :
                     if user.username.lower() in self.moderators :
                         await self.highrise.teleport(user_id, Position(18.5,0.25,9.5))
+                elif message.lower().startswith(('-tele')) and  message.lower().endswith(("s","stage")) :
+                    if user.username.lower() in self.moderators :
+                        await self.highrise.teleport(user_id, Position(10,1,9.5))
                         
             except Exception as e:
              print(f"An exception occurred[Due To {parts[0][1:]}]: {e}")
@@ -503,7 +506,9 @@ class Bot(BaseBot):
               if len(parts) == 1:
                  await self.highrise.teleport(f"{user.id}", Position(17, 7,4))
       
-        
+         if message.lower().startswith(('-stage','-s')):
+             id user.username in self.moderators:
+                 await self.highrise.teleport(f"{user.id}", Position(10, 1,9.5))
          if message.startswith(('-floor1','-g','-1')):
              parts = message.split()
              if len(parts) == 1:
