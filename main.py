@@ -19,7 +19,7 @@ import asyncio, random
 from emotes import Emotes
 from emotes import Dance_Floor
 owners = ['alionardo_','stonedzilla9']
-moderators = ['alionardo_','stonedzilla9']
+moderators = ['alionardo_','stonedzilla9','stonedwifey_']
 class BotDefinition:
     
       
